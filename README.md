@@ -77,7 +77,7 @@ To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current v
 
 ## Test the simulation
 > [!NOTE]
-> Within MRS docker, the `mrs_crazyflies` package is located in `/root/CrazySim/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package In docker, there is an alias `cd_mrs_crazyflies` which changes the directory to this package.
+> Within MRS docker, the `mrs_crazyflies` package is located in `/root/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package In docker, there is an alias `cd_mrs_crazyflies` which changes the directory to this package.
 
 This example showcases how to run the simulation using sessions, tmuxinator and environment variables. You do not need to use this format if you do not find it useful.
 
@@ -109,7 +109,7 @@ If you are waiting in this second pane, and it doesn't say that 'All Crazyflies 
 
 #### 3. The third pane (bottom left) starts the [map server](https://github.com/ros-navigation/navigation2/tree/main/nav2_map_server)
 ```
-waitForCfsGazebo; ros2 launch mrs_crazyflies map_server_launch.py map_yaml:=/root/CrazySim/ros2_ws/src/mrs_crazyflies/maps/$ENV_NAME/$ENV_NAME.yaml
+waitForCfsGazebo; ros2 launch mrs_crazyflies map_server_launch.py map_yaml:=/root/ros2_ws/src/mrs_crazyflies/maps/$ENV_NAME/$ENV_NAME.yaml
 ```
 
 #### 4. The fourth pane (bottom right) is given as an example to test if crazyflie cf_1 is moving.
