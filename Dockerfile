@@ -171,7 +171,7 @@ RUN cd $HOME/CrazySim/crazyflie-firmware \
 RUN mkdir -p $HOME/ros2_ws/src \
   && cd $HOME/ros2_ws/src \
   && git clone https://github.com/IMRCLab/crazyswarm2 --recursive \
-  && git clone https://github.com/larics/mrs_crazyflies.git
+  && git clone https://github.com/larics/mrs_crazyflies.git --branch dev
 
 #replace crazyflie_server.py adapted for sitl
 RUN rm $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
