@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.9">
-  <world name="simple_maze_10x10">
+  <world name="empty_borderless">
     <physics type="ode">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -41,28 +41,6 @@
               <normal>0 0 1</normal>
               <size>100 100</size>
             </plane>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>
-        </visual>
-      </link>
-      <link name="maze">
-        <pose> 0 0 1.5 0 0 0 </pose>
-        <collision name="maze_collision">
-          <geometry>
-            <mesh>
-              <uri>./meshes/stl_files/simple_maze_10x10.stl</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="maze_visual">
-          <geometry>
-            <mesh>
-              <uri>./meshes/stl_files/simple_maze_10x10.stl</uri>
-            </mesh>
           </geometry>
           <material>
             <ambient>0.8 0.8 0.8 1</ambient>
