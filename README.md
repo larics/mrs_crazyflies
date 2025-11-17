@@ -93,7 +93,7 @@ Please note that an example assumes that the installation is done in Docker. If 
 - -f stands for the .txt file with the x and y initial positions for each crazyflie. The example for 4 crazyflies is given in the folder `launch/drone_spawn_list` (feel free to change or add yours here).
 - -w specifies the world name, which can be found in the worlds folder.
 
-The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM_ROB`, which defines the number of robots, are located in `mrs_example_setup.sh`. This file should be sourced, alongside ros2 workspaces before (alias: ros2_ws and source_ros2) - check out the pre_window section in `session.yml`. :slightly_smiling_face:
+The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM_ROB`, which defines the number of robots, are located in `mrs_example_setup.sh`. This file should be sourced, alongside ros2 workspaces before (alias: ros2_ws and source_ros2) - check out the pre_window section in `example.yml`. :slightly_smiling_face:
 
 #### 2. In the second pane (up right), ROS2 crazyflies server, RViz and crazyflie nodes that publish cmd_vel, are started.
 ```
@@ -122,7 +122,7 @@ history -s "ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --re
 
 <br>
 
-To kill all terminals, press `ctrl+b`, then press `k` (watch out that you don't have Caps Lock on). After killing the terminals, there might still be some ROS 2 nodes running in the background. To kill them, use the command: `kill_ros2`.The command is defined in `.bash_aliases`. Keep this in mind when starting the next session. :slightly_smiling_face:
+To kill all terminals, press `ctrl+b`, then press `k` (watch out that you don't have Caps Lock on). After killing the terminals, there might still be some ROS 2 nodes running in the background. To kill them, use the command: `kill_ros2`. The command is defined in `.bash_aliases`. Keep this in mind when starting the next session. :slightly_smiling_face:
 
 ## Working on your project
 
@@ -131,9 +131,9 @@ For developing your solution, you can either create a new package or you can con
 The folder structure of this package is:
 1. worlds - contains the .sdf file of an empty Gazebo world.
 2. scripts - additional node for static transformation broadcaster from world to odom.
-4. launch - contains file to launch Gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
-5. config - the configuration files for RViz and the main .yaml file for crazyflies server
-6. startup - convenience scripts for starting the simulation and ROS2 nodes.
+3. launch - contains file to launch Gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
+4. config - the configuration files for RViz and the main .yaml file for crazyflies server
+5. startup - convenience scripts for starting the simulation and ROS2 nodes.
 
 Feel free to add more windows or to create your own setups and sessions. :slightly_smiling_face:
 
@@ -142,7 +142,7 @@ Feel free to add more windows or to create your own setups and sessions. :slight
 > - `config/crazyflies_mrs.yaml`
 >   - Set enable to true/false or comment/uncomment the number of crazyflie specification blocks you want to use.
 > - `launch/drone_spawn_list/...`
->   - Specify initial positions for each crazyflie you want to use. Each row is one crayzflie.
+>   - Specify initial positions for each crazyflie you want to use. Each row is one crazyflie.
 >   - Modify the existing file or create your own.
 > - `startup/mrs_example_setup.sh`
 >   - Modify the environment variables according to your needs.
