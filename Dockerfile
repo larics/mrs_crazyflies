@@ -124,7 +124,7 @@ RUN apt update && sudo apt install -y \
    python3-rosdep \
    ros-dev-tools \
    libboost-program-options-dev \
-   libusb-1.0-0-dev \ 
+   libusb-1.0-0-dev \
    python-is-python3
 
 RUN apt-get upgrade -y && sudo apt install ros-${ROS2_DISTRO}-desktop -y
@@ -173,7 +173,7 @@ RUN mkdir -p $HOME/ros2_ws/src \
   && git clone https://github.com/IMRCLab/crazyswarm2 --recursive \
   && git clone https://github.com/larics/mrs_crazyflies.git
 
-#replace crazyflie_server.py adapted for sitl 
+#replace crazyflie_server.py adapted for sitl
 RUN rm $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
 COPY to_copy/crazyflie_server.py $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/
 RUN chmod +x $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
@@ -193,7 +193,7 @@ RUN echo "export ROS_DOMAIN_ID=$(shuf -i 1-101 -n 1)" >> $HOME/.bashrc
 WORKDIR $HOME/ros2_ws
 
 # Final build of ROS2 ws
-RUN bash -c "source /opt/ros/${ROS2_DISTRO}/setup.bash;source $HOME/ros2_ws/install/setup.bash;colcon build --symlink-install --merge-install --cmake-args=-DCMAKE_EXPORT_COMPILE_COMMANDS=ON";
+RUN bash -c "source /opt/ros/${ROS2_DISTRO}/setup.bash; colcon build --symlink-install --merge-install --cmake-args=-DCMAKE_EXPORT_COMPILE_COMMANDS=ON";
 RUN echo "ros2_ws" >> $HOME/.bashrc
 RUN echo "source_ros2" >> $HOME/.bashrc
 

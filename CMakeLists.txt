@@ -38,7 +38,6 @@ install(PROGRAMS
 # Install launch and config files.
 install(DIRECTORY
   config
-  maps
   launch
   DESTINATION share/${PROJECT_NAME}/
 )

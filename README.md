@@ -1,10 +1,10 @@
 ## MRS-Crazyflies
-This ROS2 package contains adapted configuration files and launch files from [CrazySim](https://github.com/gtfactslab/CrazySim), that should be used in the 2nd part of the MRS Project for the simulation part.
+This ROS2 package contains adapted configuration files and launch files from [CrazySim](https://github.com/gtfactslab/CrazySim), to be used in the 2nd part of the MRS Project for the simulation part.
 
-Simulation part is run in physics simulator Gazebo Ignition and used ROS2 packages are based on [CrazySwarm2](https://imrclab.github.io/crazyswarm2/)
+Simulation part is run in physics simulator Gazebo Ignition and uses ROS2 packages based on [CrazySwarm2](https://imrclab.github.io/crazyswarm2/)
 
 ## Reporting problems
-If you encounter an error or a problem during the installation, setup or usage, please check the [Issue tab](https://github.com/larics/mrs_crazyflies/issues). If there is no solution to your problem there (in closed an open issues), feel free to open a new issue. When reporting a problem, specify your operating system and method of installation, describe your problem, and include the entire output of the command that resulted in the error. This will be the quickest way to get feedback and will help other students who may encounter the same error in the future.
+If you encounter an error or a problem during the installation, setup or usage, please check the [Issue tab](https://github.com/larics/mrs_crazyflies/issues). If there is no solution to your problem there (in closed and open issues), feel free to open a new issue. When reporting a problem, specify your operating system and method of installation, describe your problem, and include the entire output of the command that resulted in the error. This will be the quickest way to get feedback and will help other students who may encounter the same error in the future.
 
 ## Installation
 
@@ -13,18 +13,20 @@ Again, there are two ways you can set up your computer to run the simulation:
 2. If you **already have ROS2** installed and having hard time using docker on your laptop.
 
 ### 1) Docker installation (recommended!!!)
-If you haven't setup the docker in the first part of a project, please follow the instructions on [mrs_simulation](https://github.com/larics/mrs_simulation?tab=readme-ov-file#1-docker-installation-recommended) repo.
+If you haven't set up the docker in the first part of a project, please follow the instructions on [mrs_simulation](https://github.com/larics/mrs_simulation?tab=readme-ov-file#1-docker-installation-recommended) repo.
 
 Next, clone the [this repository](https://github.com/larics/mrs_crazyflies):
 ```
 git clone https://github.com/larics/mrs_crazyflies.git
 ```
-Add  to  `~/.bashrc` and source it, or type in the current terminal:
+Add the following line to  `~/.bashrc` and source it, or type this command in the current terminal:
 ```
 export DOCKER_BUILDKIT=1
 ```
 Run Dockerfile from the project root directory using the following commands:
 ```bash
+cd mrs_crazyflies
+
 # Build the Dockerfile.
 # To install ros1_bridge and ROS Noetic set the argument INSTALL_BRIDGE to true.
 # Otherwise set it to false, and it will only install ROS2.
@@ -44,10 +46,10 @@ docker start -i mrs_crazyflies_cont
 # Open the container in another terminal, while it is already started:
 docker exec -it mrs_crazyflies_cont bash
 
-# Stop the conatainer
+# Stop the container
 docker stop mrs_crazyflies_cont
 
-# Delete the container
+# Delete the container (WARNING: this will delete all data inside the container)
 docker rm mrs_crazyflies_cont
 
 ```
@@ -62,16 +64,16 @@ The docker contains packages for crazyflies simulator [CrazySim](https://github.
 Please follow the instructions given on the [CrazySim](https://github.com/gtfactslab/CrazySim) page to setup simulation. Additionally check for aliases script: https://github.com/larics/docker_files/tree/ros-humble-cf/ros2/ros2-humble/crazyflies/to_copy and README in this repository which might come in handy.
 
 The folder structure of this package is:
-1. worlds -  here is .sdf file of an empyt gazebo world.
-2. scripts - additional node for static transformation broadcaster from world to odom is there. 
-4. launch -  it contains file to launch gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list (you can change it and adapt it for your usecase) and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
+1. worlds -  here is .sdf file of an empty gazebo world.
+2. scripts - additional node for static transformation broadcaster from world to odom is there.
+4. launch -  it contains file to launch gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list (you can change it and adapt it for your use case) and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
 5. config - here is the configuration file for rviz and the main .yaml file for crazyflies server
 6. startup - it contains the example of starting the simulation and ROS2 nodes.
 
 ## Topics and services
 
-Velocity commands are published on `/cf_x/cmd_vel` to crazyflie cf_x. Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just keep in mind that for this topic message type is not Twist, but a custom message: [LogDataGeneric](https://github.com/IMRCLab/crazyswarm2/blob/main/crazyflie_interfaces/msg/LogDataGeneric.msg), whose field elements are defined as: [v_x, v_y, v_z] in a world frame. 
-To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current vel_mux.py does takeoff automatically, after the first cmd_vel command, but you can call it on your own. 
+Velocity commands are published on `/cf_x/cmd_vel` to crazyflie cf_x. Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just keep in mind that for this topic message type is not Twist, but a custom message: [LogDataGeneric](https://github.com/IMRCLab/crazyswarm2/blob/main/crazyflie_interfaces/msg/LogDataGeneric.msg), whose field elements are defined as: [v_x, v_y, v_z] in a world frame.
+To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current vel_mux.py does takeoff automatically, after the first cmd_vel command, but you can call it on your own.
 
 
 ## Test the simulation
@@ -100,7 +102,7 @@ The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM
 ```
  waitForCfsGazebo;sleep 2; ros2 launch mrs_crazyflies cf_velmux_launch.py
 ```
-The shell function `waitForCfsGazebo` waits until all crazyflies are spwaned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in to_copy/ aliases (in docker it is copied to `/root/.bash_aliases`).
+The shell function `waitForCfsGazebo` waits until all crazyflies are spawned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in to_copy/ aliases (in docker it is copied to `/root/.bash_aliases`).
 
 Crazyflies server takes the data from `crazyflies_mrs.yaml`. For more info please read about: [CrazySim](https://github.com/gtfactslab/CrazySim) and [CrazySwarm2](https://imrclab.github.io/crazyswarm2/).
 
