@@ -82,7 +82,7 @@ To run the example, navigate to `startup` folder in `mrs_crazyflies` package and
 ```
 It will open one window with several panes.
 
-![alt text](<images/Screenshot from 2025-11-17 14-05-15.png>)
+![alt text](<images/terminal_screenshot.png>)
 
 #### 1. The first pane starts the gazebo simulation:
 ```
@@ -106,7 +106,7 @@ Crazyflies server takes the data from `crazyflies_mrs.yaml`. For more info, plea
 **Please keep in mind that the variable `$NUM_ROB` should correspond to the number of enabled crazyflies in the `crazyflies_mrs.yaml` and the number of rows in the `$SPAWN_POSE_DOC`, otherwise the server won't be able to connect with Gazebo. Also, initial positions in `$SPAWN_POSE_DOC` should correspond to the ones in `crazyflies_mrs.yaml`.** Feel free to change them according to your task.
 
 > [!TIP]
-> This (second) pane should say: 'All Crazyflies parameters are initialized.' and 'All Crazyflies are fully connected.' when everything is ok.
+> This (second) pane should say: 'All Crazyflies parameters are initialized.' when everything is ok.
 
 If you are waiting in this second pane, and it doesn't say that 'All Crazyflies parameters are initialized.', please check this [issue](https://github.com/gtfactslab/CrazySim/issues/1#issue-2123839637) and its [solution](https://github.com/gtfactslab/CrazySim/issues/1#issuecomment-1933212957). Just keep in mind that the world (.sdf) files that you need to adapt are in this package's world directory (`mrs_crazyflies/worlds`). If the simulation is still heavy for your laptop (real-time factor is below 70-80%), you can disable Gazebo GUI and watch the state in RViz only. You can do this by replacing [this line](https://github.com/larics/mrs_crazyflies/blob/89fb2e18bc0da1cfb863b75ce718fef6d0150de1/launch/sitl_multiagent_text.sh#L103) in mrs_crazyflies/launch/sitl_multiagent_text.sh with: `gz sim -s`. This will start only the Gazebo server in the background, and only RViz will open.
 
